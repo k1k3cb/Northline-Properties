@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import type { Property } from "../data";
 
 function tagClasses(style: Property["tagStyle"]) {
@@ -44,7 +45,7 @@ export default function PropertyCard({ p }: { p: Property }) {
         <div className="space-y-2">
           <span className="label-caps text-dune-deep block">{p.zone}</span>
           <h3 className="font-display text-[22px] leading-[30px] text-atlantic group-hover:text-dune-deep transition-colors">
-            {p.title}
+            <Link href={`/propiedad/${p.slug}`}>{p.title}</Link>
           </h3>
           <p className="text-[13px] leading-5 text-slate-soft clamp-2">{p.desc}</p>
         </div>
@@ -61,13 +62,13 @@ export default function PropertyCard({ p }: { p: Property }) {
               </div>
             ))}
           </div>
-          <a
+          <Link
             className="w-full py-2.5 inline-flex items-center justify-center gap-1 text-center label-caps text-atlantic bg-linen hover:bg-hairline rounded transition-colors"
-            href="#contacto"
+            href={`/propiedad/${p.slug}`}
           >
             <span>Consultar Dossier</span>
             <span aria-hidden>›</span>
-          </a>
+          </Link>
         </div>
       </div>
     </article>
