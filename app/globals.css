@@ -1,26 +1,91 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Atlantic Editorial Luxury — canvas */
+  --color-linen: #f8f7f4;
+  --color-linen-deep: #efece6;
+  --color-hairline: #e2dfd8;
+  --color-chalk: #ffffff;
+
+  /* Atlantic navy */
+  --color-atlantic: #1b2a32;
+  --color-atlantic-deep: #0e171d;
+  --color-atlantic-ink: #06151d;
+
+  /* Warm dune / chestnut */
+  --color-dune: #c2a683;
+  --color-dune-deep: #9a7b56;
+  --color-dune-pale: #fddeb7;
+  --color-dune-dim: #dfc29d;
+
+  /* Slate */
+  --color-slate-soft: #4a4e51;
+  --color-slate-mute: #73787b;
+  --color-slate-line: #c3c7ca;
+
+  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-linen);
+  color: #1a1c1a;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
+
+::selection {
+  background: var(--color-dune-pale);
+  color: #281802;
+}
+
+.font-display {
+  font-family: var(--font-serif);
+}
+
+.label-caps {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.card-shadow {
+  box-shadow:
+    0 20px 40px -15px rgba(27, 42, 50, 0.06),
+    0 1px 3px rgba(27, 42, 50, 0.02);
+}
+
+.img-zoom img {
+  transition: transform 700ms ease-out;
+}
+.img-zoom:hover img {
+  transform: scale(1.04);
+}
+
+.clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
 }
