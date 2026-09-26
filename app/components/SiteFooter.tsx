@@ -1,22 +1,43 @@
 import Link from "next/link";
 import { Logo } from "./Logo";
 
-const COLS: { title: string; links: string[] }[] = [
+const COLS: { title: string; links: { label: string; href: string }[] }[] = [
   {
     title: "Colecciones",
-    links: ["Villas de Costa", "Pazos & Casas Históricas", "Áticos Urbanos", "Fincas Singulares"],
+    links: [
+      { label: "Villas de Costa", href: "/propiedades" },
+      { label: "Pazos & Casas Históricas", href: "/propiedades" },
+      { label: "Áticos Urbanos", href: "/propiedades" },
+      { label: "Fincas Singulares", href: "/propiedades" },
+    ],
   },
   {
     title: "Destinos en Galicia",
-    links: ["Rías Baixas", "Costa da Morte", "Vigo & A Coruña", "Santiago de Compostela", "Ribeira Sacra"],
+    links: [
+      { label: "Rías Baixas", href: "/propiedades" },
+      { label: "Costa da Morte", href: "/propiedades" },
+      { label: "Vigo & A Coruña", href: "/propiedades" },
+      { label: "Santiago de Compostela", href: "/propiedades" },
+      { label: "Ribeira Sacra", href: "/propiedades" },
+    ],
   },
   {
     title: "Northline",
-    links: ["Filosofía Editorial", "Equipo Privado", "Arquitectura & Interiorismo", "Prensa & Monografías"],
+    links: [
+      { label: "Filosofía Editorial", href: "/#filosofia" },
+      { label: "Equipo Privado", href: "/#contacto" },
+      { label: "Arquitectura & Interiorismo", href: "/cuaderno" },
+      { label: "Prensa & Monografías", href: "/cuaderno" },
+    ],
   },
   {
     title: "Legal & Criterio",
-    links: ["Aviso Legal", "Política de Privacidad", "Gestión de Cookies", "Canal Ético Directo"],
+    links: [
+      { label: "Aviso Legal", href: "#" },
+      { label: "Política de Privacidad", href: "#" },
+      { label: "Gestión de Cookies", href: "#" },
+      { label: "Canal Ético Directo", href: "#" },
+    ],
   },
 ];
 
@@ -83,9 +104,9 @@ export default function SiteFooter() {
               <h4 className="label-caps tracking-[0.16em] text-dune-deep">{col.title}</h4>
               <ul className="space-y-2 text-[13px] text-slate-soft">
                 {col.links.map((l) => (
-                  <li key={l}>
-                    <Link className="hover:text-atlantic transition-colors" href="#">
-                      {l}
+                  <li key={l.label}>
+                    <Link className="hover:text-atlantic transition-colors" href={l.href}>
+                      {l.label}
                     </Link>
                   </li>
                 ))}

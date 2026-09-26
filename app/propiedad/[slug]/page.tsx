@@ -52,7 +52,7 @@ export default async function PropertyPage({
               Inicio
             </Link>
             <span className="text-slate-line">/</span>
-            <Link className="hover:text-atlantic transition-colors" href="/#propiedades">
+            <Link className="hover:text-atlantic transition-colors" href="/propiedades">
               {d.zone}
             </Link>
             <span className="text-slate-line">/</span>
@@ -302,7 +302,7 @@ export default async function PropertyPage({
             </div>
             <Link
               className="inline-flex items-center gap-2 label-caps text-atlantic hover:text-dune-deep transition-colors self-start md:self-auto"
-              href="/#propiedades"
+              href="/propiedades"
             >
               <span>Explorar catálogo completo</span>
               <span aria-hidden>→</span>

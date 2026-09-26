@@ -50,19 +50,19 @@ export default function HeroSearch() {
       </form>
       <div className="mt-4 pt-3 border-t border-hairline flex flex-wrap items-center gap-x-4 gap-y-2 text-slate-soft text-[13px]">
         <span className="label-caps text-slate-mute">Tendencias:</span>
-        <a className="hover:text-atlantic transition-colors" href="#propiedades">
+        <a className="hover:text-atlantic transition-colors" href="/propiedades">
           Cabo Home Primera Línea
         </a>
         <span className="text-slate-line">·</span>
-        <a className="hover:text-atlantic transition-colors" href="#propiedades">
+        <a className="hover:text-atlantic transition-colors" href="/propiedades">
           Viñedos D.O. Albariño
         </a>
         <span className="text-slate-line">·</span>
-        <a className="hover:text-atlantic transition-colors" href="#propiedades">
+        <a className="hover:text-atlantic transition-colors" href="/propiedades">
           Vistas a las Islas Cíes
         </a>
         <span className="text-slate-line">·</span>
-        <a className="hover:text-atlantic transition-colors" href="#propiedades">
+        <a className="hover:text-atlantic transition-colors" href="/propiedades">
           Áticos Dársena A Coruña
         </a>
       </div>

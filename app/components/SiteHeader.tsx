@@ -2,41 +2,48 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Logo } from "./Logo";
 
 const NAV = [
-  { label: "Inicio", href: "#inicio", active: true },
-  { label: "Propiedades", href: "#propiedades", active: false },
-  { label: "Servicios Exclusivos", href: "#filosofia", active: false },
-  { label: "Cuaderno Editorial", href: "#cuaderno", active: false },
-  { label: "Nosotros", href: "#contacto", active: false },
+  { label: "Inicio", href: "/" },
+  { label: "Propiedades", href: "/propiedades" },
+  { label: "Servicios Exclusivos", href: "/#filosofia" },
+  { label: "Cuaderno Editorial", href: "/cuaderno" },
+  { label: "Nosotros", href: "/#contacto" },
 ];
 
 export default function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-linen/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
       <div className="h-20 max-w-[1560px] mx-auto px-5 md:px-10 lg:px-[72px] flex items-center justify-between gap-6">
-        <Link href="#inicio" aria-label="Northline inicio">
+        <Link href="/" aria-label="Northline inicio">
           <Logo />
         </Link>
 
         <nav className="hidden xl:flex items-center gap-7" aria-label="Principal">
-          {NAV.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              aria-current={item.active ? "page" : undefined}
-              className={`text-[13px] uppercase tracking-[0.12em] transition-colors duration-200 ${
-                item.active
-                  ? "text-atlantic font-semibold"
-                  : "text-slate-soft hover:text-atlantic font-medium"
-              }`}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {NAV.map((item) => {
+            const active = isActive(item.href);
+            return (
+              <Link
+                key={item.label}
+                href={item.href}
+                aria-current={active ? "page" : undefined}
+                className={`text-[13px] uppercase tracking-[0.12em] transition-colors duration-200 ${
+                  active
+                    ? "text-atlantic font-semibold"
+                    : "text-slate-soft hover:text-atlantic font-medium"
+                }`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-4 shrink-0">
@@ -56,14 +63,14 @@ export default function SiteHeader() {
             <span aria-hidden className="text-dune-deep text-[18px] leading-none">
               ✆
             </span>
-            <span>+34 986 200 450</span>
+            <span>+34 986 XXX YYYY</span>
           </a>
-          <a
+          <Link
             className="hidden sm:inline-flex items-center px-4 py-2.5 rounded bg-linen-deep text-atlantic hover:bg-hairline label-caps transition-colors duration-200"
-            href="#contacto"
+            href="/#contacto"
           >
             Solicitar Valoración
-          </a>
+          </Link>
           <span className="w-8 h-8 rounded-full bg-atlantic hidden sm:flex items-center justify-center shrink-0 text-linen text-sm">
             ○
           </span>
@@ -96,13 +103,13 @@ export default function SiteHeader() {
               {item.label}
             </Link>
           ))}
-          <a
-            href="#contacto"
+          <Link
+            href="/#contacto"
             onClick={() => setOpen(false)}
             className="mt-2 inline-flex items-center justify-center px-4 py-3 rounded bg-atlantic text-linen label-caps"
           >
             Solicitar Valoración
-          </a>
+          </Link>
         </nav>
       )}
     </header>

@@ -2,7 +2,7 @@ import Link from "next/link";
 import HeroSearch from "./components/HeroSearch";
 import ContactForm from "./components/ContactForm";
 import PropertyCard from "./components/PropertyCard";
-import { properties, articles } from "./data";
+import { properties, editorialArticles } from "./data";
 
 export default function Home() {
   const featured = properties.slice(0, 4);
@@ -69,7 +69,7 @@ export default function Home() {
             </div>
             <Link
               className="inline-flex items-center gap-2 text-[14px] font-medium uppercase tracking-wider text-atlantic hover:text-dune-deep transition-colors shrink-0 pb-1"
-              href="#propiedades"
+              href="/propiedades"
             >
               <span>Ver todas las propiedades (38)</span>
               <span aria-hidden>→</span>
@@ -227,7 +227,7 @@ export default function Home() {
             </div>
             <Link
               className="inline-flex items-center gap-2 text-[14px] font-medium uppercase tracking-wider text-atlantic hover:text-dune-deep transition-colors shrink-0 pb-1"
-              href="#cuaderno"
+              href="/cuaderno"
             >
               <span>Explorar todos los ensayos</span>
               <span aria-hidden>→</span>
@@ -235,29 +235,33 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {articles.map((a) => (
-              <article key={a.title} className="group img-zoom flex flex-col gap-4">
-                <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-linen-deep shadow-sm">
+            {editorialArticles.filter((a) => !a.featured).slice(0, 3).map((a) => (
+              <article key={a.slug} className="group img-zoom flex flex-col gap-4">
+                <Link
+                  href={`/cuaderno/${a.slug}`}
+                  className="relative block w-full aspect-[16/10] rounded-xl overflow-hidden bg-linen-deep shadow-sm"
+                  aria-label={`Leer: ${a.title}`}
+                >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={a.image} alt={a.alt} loading="lazy" className="w-full h-full object-cover" />
                   <span className="absolute top-3 left-3 px-2.5 py-1 rounded bg-linen/90 backdrop-blur-md text-atlantic label-caps">
                     {a.tag}
                   </span>
-                </div>
+                </Link>
                 <div className="space-y-2">
-                  <p className="label-caps text-slate-mute">{a.meta}</p>
+                  <p className="label-caps text-slate-mute">{a.readTime} · {a.author}</p>
                   <h3 className="font-display text-[22px] leading-[30px] text-atlantic group-hover:text-dune-deep transition-colors">
-                    {a.title}
+                    <Link href={`/cuaderno/${a.slug}`}>{a.title}</Link>
                   </h3>
-                  <p className="text-[13px] text-slate-soft clamp-3">{a.desc}</p>
+                  <p className="text-[13px] text-slate-soft clamp-3">{a.excerpt}</p>
                 </div>
-                <a
+                <Link
                   className="inline-flex items-center gap-1 text-[14px] font-medium text-atlantic group-hover:text-dune-deep transition-colors pt-1"
-                  href="#cuaderno"
+                  href={`/cuaderno/${a.slug}`}
                 >
                   <span className="underline underline-offset-4">Leer artículo completo</span>
                   <span aria-hidden>↗</span>
-                </a>
+                </Link>
               </article>
             ))}
           </div>
@@ -350,7 +354,7 @@ export default function Home() {
                     <p className="text-[13px] text-slate-soft">{e.d}</p>
                     <p className="label-caps text-slate-mute pt-1">
                       {e.v} ·{" "}
-                      <a href="#propiedades" className="text-atlantic underline underline-offset-2">
+                      <a href="/propiedades" className="text-atlantic underline underline-offset-2">
                         Ver catálogo local
                       </a>
                     </p>
